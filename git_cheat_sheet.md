@@ -8,7 +8,7 @@
 2. Define the user email associate to all commit operations  
 `$ git config --global user.email "[email]"`
 
-3. Activate the colorisation in the command line output  
+3. Activate the colorization in the command line output  
 `$ git config --global color.ui auto`
 
 4. Each previous operation can be done specifically for each of your local repository.  
@@ -86,7 +86,7 @@ exists and shares the same name.
 `git tag` 
 2. Create a tag with <tag_name>  
 `git tag [tag_name]`
-3. Postion your workspace on the tag  
+3. Position your workspace on the tag  
 `git checkout [tag_name]`
  
 
