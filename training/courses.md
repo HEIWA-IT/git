@@ -98,23 +98,22 @@ Git has three main states that your files can reside in: modified, staged, and c
 The default Git config (.gitconfig file in home folder) can be amended to customize many aspects of Git.  
 The configuration options in the table below can be changed in a terminal using command **git config --global <configuration option>**  
 
-| Option description                                                                                | Configuration option              |
-| -----------                                                                                       | -----------                       |
-| Use terminal color when available                                                                 | color.ui auto                     |
-| Make “git push” without argument push the current branch to the remote branch with the same name. | push.default simple               | 
-| Ensure “git pull” will use rebase instead of merge, preserving existing local merges              | pull.rebase preserve              | 
-| Improve “git diff” output of source/target and detect renames                                     | diff.mnemonicPrefix true          |
-|                                                                                                   | diff.renames true                 | 
-| Make “git log” show abbreviated SHA1                                                              | log.abbrevCommit true             | 
-| Make Git automatically record and re-apply conflicts resolution                                   | rerere.enabled true               | 
-| Automatically add to index auto-resolved conflicts                                                | rerere.autoupdate true            | 
+| Option description                                                                                | Configuration option                              |
+| :-----------                                                                                      | :-----------                                      |
+| Use terminal color when available                                                                 | color.ui auto                                     |
+| Make “git push” without argument push the current branch to the remote branch with the same name. | push.default simple                               |
+| Ensure “git pull” will use rebase instead of merge, preserving existing local merges              | pull.rebase preserve                              |
+| Improve “git diff” output of source/target and detect renames                                     | diff.mnemonicPrefix true <br> diff.renames true   |
+| Make “git log” show abbreviated SHA1                                                              | log.abbrevCommit true                             |
+| Make Git automatically record and re-apply conflicts resolution                                   | rerere.enabled true                               |
+| Automatically add to index auto-resolved conflicts                                                | rerere.autoupdate true                            |
  
 ## Recommanded ALIASES
 The default Git config (.gitconfig file in home folder) can also be used to define new git commands as aliases.  
 The table below provides useful aliases, that can be defined in a terminal using command git config --global alias.<command alias> “<command>”  
 
 | Alias           | Description                                                 | Command                                                                                           |
-| -----------     | -----------                                                 |-----------                                                                                        |
+| :-----------    | :-----------                                                | :-----------                                                                                      |
 | tree            | Show improved logs (colors, branch graphs…)                 | log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'       |
 | st              | Shortcut for status command                                 | status                                                                                            |
 | co              | Shortcut for checkout                                       | checkout                                                                                          |
@@ -123,23 +122,15 @@ The table below provides useful aliases, that can be defined in a terminal using
 
 # GIT CHEAT SHEET
 ## GIT CHEAT SHEET
-| Goal                                                                              | Git commands                                  |
-| -----------                                                                       | -----------                                   |
-| Start a branch from another one                                                   | git checkout <source branch>                  |
-|                                                                                   | git pull                                      |
-|                                                                                   | git checkout –b <target branch>               |
-| Merge a branch into another one (true merge)                                      | git checkout <target branch>                  |
-|                                                                                   | git merge --no-ff <source branch>             |
-| Merge a branch into another one (rebase then fast-forward)                        | git rebase <target branch>                    |
-|                                                                                   | git checkout <target branch>                  |
-|                                                                                   | git merge --ff-only <source branch>           |
-| Rebase current branch against its remote counterpart                              | git fetch                                     |
-|                                                                                   | git rebase                                    |
-| Delete a local branch                                                             | git branch –d <branch name>                   |
-| Tag current commit                                                                | git tag <tag name>                            |
-| Push tags to remote                                                               | git push --tags                               |
-| Push current branch                                                               | git push                                      |
-|                                                                                   | or                                            |
-|                                                                                   | git push -u *if branch does not exist yet*    |
-| Start working on a remote branch                                                  | git fetch                                     |
-|                                                                                   | git checkout <branch name>                    |
+| Goal                                                                              | Git commands                                                                                          |
+| :-------------------------------------------------------------------------------- | :-------------------------------------------                                                          |
+| Start a branch from another one                                                   | git checkout <source branch> <br> git pull <br> git checkout –b <target branch>                       |
+| Merge a branch into another one (true merge)                                      | git checkout <target branch> <br>  git merge --no-ff <source branch>                                  |
+| Merge a branch into another one (rebase then fast-forward)                        | git rebase <target branch> <br> git checkout <target branch> <br> git merge --ff-only <source branch> |
+| Rebase current branch against its remote counterpart                              | git fetch <br> git rebase                                                                             |
+| Delete a local branch                                                             | git branch –d <branch name>                                                                           |
+| Tag current commit                                                                | git tag <tag name>                                                                                    |
+| Push tags to remote                                                               | git push --tags                                                                                       |
+| Push current branch                                                               | git push <br> or <br> git push -u *if branch does not exist yet*                                      |
+| Start working on a remote branch                                                  | git fetch <br> git checkout <branch name>                                                             |
+
