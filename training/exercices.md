@@ -228,7 +228,7 @@ $ git branch -a
   * master
 ```   
 
-## 4- Pushing locally to our remote repository
+## 5- Pushing locally to our remote repository
 
 ### 1. Push our modification on the remote server:
 You have two possibilities here:  
@@ -242,3 +242,108 @@ git push -u orgin master
 git push
 ```
 
+## 5- Resolving a conflict
+Sometimes, two or more people are working simultaneously on a file locally.  
+After that they want to share with others the result of their works.  
+To do so, they have to push on the remote repository what they have done.  
+For the first one, the result should be push easily with no conflicts.  
+For the others, it won't be the same.  
+GIT will detect that their local branch is behind the remote repository and will ask them to merge locally what has been 
+pushed before they'll be able to push the result of their work.
+
+For this exercise, one person will add his lastname to the lastanme.txt file and push it to the remote.
+After that each person doing the exercise will add his lastname in lastanme.txt file, commit his change and push it to the remote.
+
+Thge gaol here is to resolve a conflict. There are ways to avoid to do it but this is not the primary goal in our case.
+
+1. Here you will try to add your lastname in the lastname.txt file. The content of your file should look like this:  
+```
+DOE
+<your_lastanme_in_uppercase>
+```
+
+2. Commit your file and try to push it to the remote:  
+```
+$ git add lastname.txt
+```
+```
+$ git commit -m "Adding KONG to lastname.txt"
+[master 003618e] Adding KONG to lastname.txt
+ 1 file changed, 1 insertion(+)
+```
+```
+$ git push
+To ssh://<remote_server>/formations/firstname-lastname.git
+ ! [rejected]        master -> master (fetch first)
+error: impossible de pousser des références vers 'ssh://<remote_server>/formations/firstname-lastname.git'
+astuce: Les mises à jour ont été rejetées car la branche distante contient du travail que
+astuce: vous n'avez pas en local. Ceci est généralement causé par un autre dépôt poussé
+astuce: vers la même référence. Vous pourriez intégrer d'abord les changements distants
+astuce: (par exemple 'git pull ...') avant de pousser à nouveau.
+astuce: Voir la 'Note à propos des avances rapides' dans 'git push --help' pour plus d'information.
+```
+You can see that the remote contains some works not present in your local repository.
+So you need to merge it locally first.
+
+3. Get the content of the remote locally:
+```
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Dépaquetage des objets: 100% (3/3), fait.
+Depuis ssh://<remote_server>/formations/firstname-lastname
+   ed74e54..b1395a3  master     -> origin/master
+Fusion automatique de lastname.txt
+CONFLIT (contenu) : Conflit de fusion dans lastname.txt
+La fusion automatique a échoué ; réglez les conflits et validez le résultat.
+```
+
+There are some conflict to resolve.
+
+4.  Resolve the conflicts
+Here are the content of the lastname.txt file
+```
+MAGIER
+<<<<<<< HEAD
+KONG
+=======
+CHIRON
+>>>>>>> b1395a34bbfb985416cd04d327566e5227bd72bb
+```
+Everything between the <<<<< HEAD and ===== are YOUR local changes. 
+Everything between the ==== and >>>> b1395a34bbfb985416cd04d327566e5227bd72bb are the REMOTE's changes (e.g. your team mates).
+
+To fix a merge conflict, simply edit the file until it looks the way you want it to. 
+This means removing all the >>>, ===, and <<< markers, keep what you want to have in your file, and then save the file. 
+This is a way to resolved your conflict, but you can do it differently with your IDE for example.
+
+Here is the result we want to push:
+```
+MAGIER
+KONG
+CHIRON
+```
+
+5. Add the lastname.txt file to the staging area and commit your change
+```
+$ git add lastname.txt
+$ git commit -m "merged lastnames"
+[master c27a00a] merged lastnames
+```
+
+6. Push your changes to the remote repository
+```
+$ git push
+Énumération des objets: 10, fait.
+Décompte des objets: 100% (10/10), fait.
+Compression par delta en utilisant jusqu'à 8 fils d'exécution
+Compression des objets: 100% (4/4), fait.
+Écriture des objets: 100% (6/6), 539 bytes | 539.00 KiB/s, fait.
+Total 6 (delta 2), réutilisés 0 (delta 0)
+To ssh://<remote_server>/formations/firstname-lastname.git
+   b1395a3..c27a00a  master -> master
+```
+
+You have resolved a conflict and pushed your merge!
