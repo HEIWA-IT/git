@@ -1,3 +1,7 @@
+# Git basic exercises
+
+## 1- Initialize or clone a repository locally
+
 ### 1. Execute a command to initialize a repository on your computer: 
 
 You have two possibilities here:  
@@ -25,8 +29,10 @@ $ git remote add origin <PROTOCOL>://<REPOSITORY_URL>/training/git_training.git
     Object reception: 100% (1128/1128), 108.82 KiB | 619.00 KiB/s, done.   
     Deltas resoltuion: 100% (235/235), done.   
    ```
-    
-### 2. Create a file (here it is firstname.txt with this content "Daniel") and execute git status: 
+
+## 2 - Create your first commit  
+
+### 1. Create a file (here it is firstname.txt with this content "Daniel") and execute git status: 
 ```
 $ git status
 On branch master
@@ -50,7 +56,7 @@ Untracked files:
         .idea/
 ```
 
-### 3. Add the firstname.txt file to the staging area and check the status: 
+### 2. Add the firstname.txt file to the staging area and check the status: 
 ```
 $ git add firstname.txt
 ```
@@ -77,7 +83,7 @@ Untracked files:
         .idea/
 ```
 
-### 4. Commit the firstname.txt : 
+### 3. Commit the firstname.txt : 
 ```
 $ git commit -m "Adding firstname.txt file"
 [master (root-commit) c06d90a] Adding firstname.txt file
@@ -86,7 +92,7 @@ create mode 100644 firstname.txt
 create mode 100644 exercies.md
 ```
 
-### 5. Check the log of your current branch: 
+### 4. Check the log of your current branch: 
 ```
 $ git log
 commit c06d90ae1e5ac8a26cbb7cb349dcc0452f25caaa (HEAD -> master)
@@ -96,7 +102,9 @@ Date:   Thu Nov 28 11:38:44 2019 +0100
     Adding firstname.txt file
 ```
 
-### 6. Modified the content of the file (here it will become "Dan") and commit it: 
+## 3- Make a change directly on the current branch
+
+### 1. Modified the content of the file (here it will become "Dan") and commit it: 
 ```
 $ git status
 On branch master
@@ -121,8 +129,25 @@ $ git commit -m "Fix file content"
 [master 7c8754a] Fix file content
 1 file changed, 1 insertion(+), 1 deletion(-)
 ```
+   We execute a git log command to see what has been commited to our repository:
+```
+$ git log
+commit 7c8754abc5d31aa9acfac407185b1197e5755696
+Author: Dan MAGIER (trainer) <dan@heiwa-it.com>
+Date:   Thu Nov 28 11:48:26 2019 +0100
 
-### 7. Creating a new branch and list all the branch 
+    Fix file content
+
+commit c06d90ae1e5ac8a26cbb7cb349dcc0452f25caaa
+Author: Dan MAGIER (trainer) <dan@heiwa-it.com>
+Date:   Thu Nov 28 11:38:44 2019 +0100
+
+    Adding firstname.txt file 
+```  
+
+## 4- Make a change by creating a new branch
+
+### 1. Creating a new branch and list all the branch 
 ```
 $ git checkout -b lastname_feature
   Switched to a new branch 'lastname_feature'
@@ -135,7 +160,7 @@ $ git branch -a
 * lastname_feature
 ```
 
-### 8. Adding a new file lastname.txt to the lastname_feature branch and commiting it
+### 2. Adding a new file lastname.txt to the lastname_feature branch and commiting it
 ```
 $ git add lastname.txt
 ``` 
@@ -146,7 +171,7 @@ $ git commit -m "Adding lastname.txt file"
 create mode 100644 lastname.txt
 ```
 
-### 9. Merging the lastname_feature branch into the master branch 
+### 3. Merging the lastname_feature branch into the master branch 
 First go to the master branch: 
 ```
 $ git checkout master
@@ -163,7 +188,7 @@ Fast-forwarded master to lastname_feature.
 ```
 $ git merge lastname_feature
 Updating 7c8754a..348177f
-Fast-forward
+Fast-forward --ff-only
 lastname.txt | 0
 1 file changed, 0 insertions(+), 0 deletions(-)
 create mode 100644 lastname.txt  
@@ -192,7 +217,7 @@ Date:   Thu Nov 28 11:38:44 2019 +0100
     Adding firstname.txt file 
 ```  
 
-### 10. Delete the lastname_feature branch:  
+### 4. Delete the lastname_feature branch:  
     Be sure to be on another branch that the one you want to delete and execute the following command:  
 ```
 $ git branch -d lastname_feature
@@ -202,3 +227,18 @@ Deleted branch lastname_feature (was 348177f).
 $ git branch -a
   * master
 ```   
+
+## 4- Pushing locally to our remote repository
+
+### 1. Push our modification on the remote server:
+You have two possibilities here:  
+   1- If you have initiated locally your repository:
+```
+git push -u orgin master
+```
+
+   2- If you have clone a remote repository
+```
+git push
+```
+
