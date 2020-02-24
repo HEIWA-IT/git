@@ -1,10 +1,32 @@
 1. Execute a command to initialize a repository on your computer: 
-```
-$ git init
-Initialized empty Git repository in C:/Users/trainer/workspaces/training/git_training/.git/
-```
 
-2. Create a file (here it is example.txt with this content "this an example") and execute git status: 
+You have two possibilities here:  
+   1. Init a repository locally  
+    ```
+    $ git init
+    Initialized empty Git repository in C:/Users/trainer/workspaces/training/git_training/.git/
+    ```  
+    By initializing a repository on your computer, at one moment you'll want to share your code.  
+    To do so, you will need to push your code on a remote repository.  
+    You will need to create it on the remote server (look at the documentation of the git server solution your 
+    organisation is using) and configure it locally as follow:  
+    ```
+    git remote add origin <PROTOCOL>://<REPOSITORY_URL>/training/git_training.git
+    ``` 
+    
+   2. Clone a remote repository  
+    ```
+    $ git clone <PROTOCOL>://<REPOSITORY_URL>/training/git_training.git
+    Clonage dans 'git_training'...
+    remote: Enumerating objects: 1128, done.
+    remote: Counting objects: 100% (1128/1128), done.
+    remote: Compressing objects: 100% (466/466), done.
+    remote: Total 1128 (delta 235), reused 1107 (delta 228)
+    Object reception: 100% (1128/1128), 108.82 KiB | 619.00 KiB/s, fait.
+    Deltas resoltuion: 100% (235/235), fait.
+    ```    
+    
+2. Create a file (here it is firstname.txt with this content "Daniel") and execute git status: 
 ```
 $ git status
 On branch master
@@ -14,13 +36,13 @@ No commits yet
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
-        new file:   example.txt
+        new file:   firstname.txt
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-        modified:   example.txt
+        modified:   firstname.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -28,9 +50,9 @@ Untracked files:
         .idea/
 ```
 
-3. Add the example.txt file to the staging area and check the status: 
+3. Add the firstname.txt file to the staging area and check the status: 
 ```
-$ git add example.txt
+$ git add firstname.txt
 ```
 ```
 $ git status
@@ -41,7 +63,7 @@ No commits yet
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
-        new file:   example.txt
+        new file:   firstname.txt
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -55,12 +77,12 @@ Untracked files:
         .idea/
 ```
 
-4. Commit the example.txt : 
+4. Commit the firstname.txt : 
 ```
-$ git commit -m "Adding example.txt file"
-[master (root-commit) c06d90a] Adding example.txt file
+$ git commit -m "Adding firstname.txt file"
+[master (root-commit) c06d90a] Adding firstname.txt file
 2 files changed, 1 insertion(+)
-create mode 100644 example.txt
+create mode 100644 firstname.txt
 create mode 100644 exercies.md
 ```
 
@@ -71,10 +93,10 @@ commit c06d90ae1e5ac8a26cbb7cb349dcc0452f25caaa (HEAD -> master)
 Author: Dan MAGIER (trainer) <dan@heiwa-it.com>
 Date:   Thu Nov 28 11:38:44 2019 +0100
 
-    Adding example.txt file
+    Adding firstname.txt file
 ```
 
-6. Modified the content of the file (here it will become "this is an example") and commit it: 
+6. Modified the content of the file (here it will become "Dan") and commit it: 
 ```
 $ git status
 On branch master
@@ -82,7 +104,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-        modified:   example.txt
+        modified:   firstname.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -92,7 +114,7 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 ```
-$ git add example.txt
+$ git add firstname.txt
 ```
 ```
 $ git commit -m "Fix file content"
@@ -102,29 +124,29 @@ $ git commit -m "Fix file content"
 
 7. Creating a new branch and list all the branch 
 ```
-$ git checkout -b new_feature
-  Switched to a new branch 'new_feature'
+$ git checkout -b lastname_feature
+  Switched to a new branch 'lastname_feature'
 ``` 
 NB: `git checkout -b <branch_name>` is a shortcut for `git branch <branch_name>` followed by `git checkout <branch_name>` 
 
 ```
 $ git branch -a
   master
-* new_feature
+* lastname_feature
 ```
 
-8. Adding a new file newFeatureFile.txt to the new_feature branch and commiting it
+8. Adding a new file lastname.txt to the lastname_feature branch and commiting it
 ```
-$ git add newFeatureFile.txt
+$ git add lastname.txt
 ``` 
 ```
-$ git commit -m "Adding newFeatureFile.txt file"
-[new_feature 348177f] Adding newFeatureFile.txt file
+$ git commit -m "Adding lastname.txt file"
+[lastname_feature 348177f] Adding lastname.txt file
 1 file changed, 0 insertions(+), 0 deletions(-)
-create mode 100644 newFeatureFile.txt
+create mode 100644 lastname.txt
 ```
 
-9. Merging the new_feature branch into the master branch 
+9. Merging the lastname_feature branch into the master branch 
 First go to the master branch: 
 ```
 $ git checkout master
@@ -132,30 +154,30 @@ $ git checkout master
 After that, you can do one of this two commands:  
    1. We do a rebase:  
 ``` 
-$ git rebase new_feature
+$ git rebase lastname_feature
 First, rewinding head to replay your work on top of it...
-Fast-forwarded master to new_feature. 
+Fast-forwarded master to lastname_feature. 
 ```
 
    2. We do a merge:  
 ```
-$ git merge new_feature
+$ git merge lastname_feature
 Updating 7c8754a..348177f
 Fast-forward
-newFeatureFile.txt | 0
+lastname.txt | 0
 1 file changed, 0 insertions(+), 0 deletions(-)
-create mode 100644 newFeatureFile.txt  
+create mode 100644 lastname.txt  
 ```  
    3. We execute a git log command to see the result of the merge or rebase.  
       Here the result are identical but in some it won't.  
        
 ```
 $ git log
-commit 348177f601fab2affdba8936beb2e472eddbe6eb (HEAD -> master, new_feature)
+commit 348177f601fab2affdba8936beb2e472eddbe6eb (HEAD -> master, lastname_feature)
 Author: Dan MAGIER (trainer) <dan@heiwa-it.com>
 Date:   Thu Nov 28 15:18:33 2019 +0100
 
-    Adding newFeatureFile.txt file
+    Adding lastname.txt file
 
 commit 7c8754abc5d31aa9acfac407185b1197e5755696
 Author: Dan MAGIER (trainer) <dan@heiwa-it.com>
@@ -167,14 +189,14 @@ commit c06d90ae1e5ac8a26cbb7cb349dcc0452f25caaa
 Author: Dan MAGIER (trainer) <dan@heiwa-it.com>
 Date:   Thu Nov 28 11:38:44 2019 +0100
 
-    Adding example.txt file 
+    Adding firstname.txt file 
 ```  
 
-10. Delete the new_feature branch:  
+10. Delete the lastname_feature branch:  
     Be sure to be on another branch that the one you want to delete and execute the following command:  
 ```
-$ git branch -d new_feature
-Deleted branch new_feature (was 348177f).
+$ git branch -d lastname_feature
+Deleted branch lastname_feature (was 348177f).
 ```        
 ```  
 $ git branch -a
