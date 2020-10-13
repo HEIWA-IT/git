@@ -21,7 +21,7 @@
         <cucumber.version>4.2.3</cucumber.version>
         <jackson.version>2.9.8</jackson.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mockito.version>2.24.0</mockito.version>
     </properties>
 
