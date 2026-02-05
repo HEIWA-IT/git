@@ -16,7 +16,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <assertJ.version>3.11.1</assertJ.version>
+        <assertJ.version>3.27.7</assertJ.version>
         <cukedoctor.version>1.2.1</cukedoctor.version>
         <cucumber.version>4.2.3</cucumber.version>
         <jackson.version>2.9.8</jackson.version>
